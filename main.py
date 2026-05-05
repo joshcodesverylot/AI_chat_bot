@@ -4,9 +4,15 @@ import json
 
 messages = []
 
+with open('chat_history.json', 'r', encoding='utf-8') as f:
+    messages = json.load(f)
+
 print("Ollama chat, Please type exit to quit")
 
+response = chat(model=model, messages=messages)
+
 while True:
+
 
     user_input = input("User: ")
 
@@ -17,7 +23,7 @@ while True:
     
     messages.append({"role": "user", "content": user_input})
 
-    response = chat(model="gemma3:4b", messages=messages)
+    response = chat(model=model, messages=messages)
 
     assistant_reply = response['message']['content']
     print(f"AI: {assistant_reply}")
