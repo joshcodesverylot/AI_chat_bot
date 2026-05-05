@@ -1,4 +1,6 @@
 from ollama import chat
+from config import model
+import json
 
 messages = []
 
@@ -22,3 +24,6 @@ while True:
 
 
     messages.append({"role": "assistant", "content": assistant_reply})
+
+with open("chat_history.json", "w") as f:
+    json.dump(messages, f, indent=4)
